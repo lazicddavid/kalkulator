@@ -13,6 +13,7 @@ body {
 }
 
 .calculator {
+  width: 320px;
   background: #2d2d44;
   padding: 20px;
   border-radius: 10px;
@@ -28,6 +29,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
+  overflow: hidden;
 }
 
 .previous-value {

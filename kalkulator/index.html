@@ -9,11 +9,14 @@
   </head>
   <body>
     <div class="calculator">
-      <input type="text" class="display" />
+      <div class="display">
+        <div class="previous-value"></div>
+        <div class="current-value"></div>
+      </div>
 
       <div class="main-buttons">
-        <button class="clear">CLEAR</button>
-        <button class="delete">DELETE</button>
+        <button class="clear" type="button">CLEAR</button>
+        <button class="delete" type="button">DELETE</button>
       </div>
 
       <div class="buttons">
@@ -38,6 +41,7 @@
         <button>+</button>
       </div>
     </div>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

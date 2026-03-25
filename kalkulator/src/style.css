@@ -20,11 +20,24 @@ body {
 
 .display {
   width: 100%;
-  height: 7rem;
+  height: 100px;
+  background-color: white;
   margin-bottom: 10px;
-  font-size: 20px;
-  text-align: right;
-  padding: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.previous-value {
+  font-size: 18px;
+  color: gray;
+}
+
+.current-value {
+  font-size: 32px;
+  color: black;
 }
 
 .buttons {
@@ -34,6 +47,7 @@ body {
 }
 
 button {
+  border-radius: 6px;
   height: 50px;
   font-size: 18px;
   cursor: pointer;
@@ -46,14 +60,17 @@ button {
 }
 
 .clear {
+  border-radius: 6px;
   background-color: rgb(0, 128, 0);
-
   border: none;
   height: 50px;
   width: 50%;
 }
 
 .delete {
+  border-radius: 6px;
+  background-color: red;
+  border: none;
   height: 50px;
   width: 50%;
 }

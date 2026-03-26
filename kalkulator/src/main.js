@@ -21,6 +21,12 @@ DOM.buttons.forEach(function (button) {
     if (operators.includes(value)) {
       if (DOM.currentValue.textContent === "") return;
 
+      if (DOM.previousValue.textContent === "") {
+        DOM.previousValue + currentValue + operator;
+        operator = operators;
+      } else {
+        return (currentValue = "");
+      }
       operator = value;
       DOM.previousValue.textContent =
         DOM.currentValue.textContent + " " + value;
@@ -30,23 +36,23 @@ DOM.buttons.forEach(function (button) {
       const previousText = DOM.previousValue.textContent;
       const num1 = Number(previousText.split(" ")[0]);
       const num2 = Number(DOM.currentValue.textContent);
-    }
 
-    let result = 0;
+      let result = 0;
 
-    if (operator === "+") {
-      result = num1 + num2;
-    }
-    if (operator === "-") {
-      result = num1 - num2;
-    }
-    if (operator === "*") {
-      result = num1 * num2;
-    }
-    if (operator === "/") {
-      result = num1 / num2;
-    }
+      if (operator === "+") {
+        result = num1 + num2;
+      }
+      if (operator === "-") {
+        result = num1 - num2;
+      }
+      if (operator === "/") {
+        result = num1 / num2;
+      }
+      if (operator === "*") {
+        result = num1 * num2;
+      }
 
-    DOM.currentValue.textContent = result;
+      DOM.currentValue.textContent = result;
+    }
   });
 });

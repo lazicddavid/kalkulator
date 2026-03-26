@@ -28,16 +28,16 @@ DOM.buttons.forEach(function (button) {
           DOM.currentValue.textContent + " " + value;
         DOM.currentValue.textContent = "";
       } else {
-        const prevText = DOM.previousValue.textContent;
-        const num1 = Number(prevText.split(" ")[0]);
+        const previousText = DOM.previousValue.textContent;
+        const num1 = Number(previousText.split(" ")[0]);
         const num2 = Number(DOM.currentValue.textContent);
 
         let result = 0;
 
         if (operator === "+") result = num1 + num2;
         if (operator === "-") result = num1 - num2;
-        if (operator === "*") result = num1 * num2;
         if (operator === "/") result = num1 / num2;
+        if (operator === "*") result = num1 * num2;
 
         operator = value;
         DOM.previousValue.textContent = result + " " + value;
@@ -46,14 +46,14 @@ DOM.buttons.forEach(function (button) {
     }
 
     if (value === "=") {
-      const prevText = DOM.previousValue.textContent;
-      const num1 = Number(prevText.split(" ")[0]);
+      const previousText = DOM.previousValue.textContent;
+      const num1 = Number(previousText.split(" ")[0]);
       const num2 = Number(DOM.currentValue.textContent);
 
       let result = 0;
 
-      if (operator === "+") result = num1 + num2;
       if (operator === "-") result = num1 - num2;
+      if (operator === "+") result = num1 + num2;
       if (operator === "*") result = num1 * num2;
       if (operator === "/") result = num1 / num2;
 

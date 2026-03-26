@@ -18,41 +18,54 @@ DOM.buttons.forEach(function (button) {
     if (numbersValues.includes(value)) {
       DOM.currentValue.textContent += value;
     }
+
     if (operators.includes(value)) {
       if (DOM.currentValue.textContent === "") return;
 
       if (DOM.previousValue.textContent === "") {
-        DOM.previousValue + currentValue + operator;
-        operator = operators;
+        operator = value;
+        DOM.previousValue.textContent =
+          DOM.currentValue.textContent + " " + value;
+        DOM.currentValue.textContent = "";
       } else {
-        return (currentValue = "");
+        const prevText = DOM.previousValue.textContent;
+        const num1 = Number(prevText.split(" ")[0]);
+        const num2 = Number(DOM.currentValue.textContent);
+
+        let result = 0;
+
+        if (operator === "+") result = num1 + num2;
+        if (operator === "-") result = num1 - num2;
+        if (operator === "*") result = num1 * num2;
+        if (operator === "/") result = num1 / num2;
+
+        operator = value;
+        DOM.previousValue.textContent = result + " " + value;
+        DOM.currentValue.textContent = "";
       }
-      operator = value;
-      DOM.previousValue.textContent =
-        DOM.currentValue.textContent + " " + value;
-      DOM.currentValue.textContent = "";
     }
+
     if (value === "=") {
-      const previousText = DOM.previousValue.textContent;
-      const num1 = Number(previousText.split(" ")[0]);
+      const prevText = DOM.previousValue.textContent;
+      const num1 = Number(prevText.split(" ")[0]);
       const num2 = Number(DOM.currentValue.textContent);
 
       let result = 0;
 
-      if (operator === "+") {
-        result = num1 + num2;
-      }
-      if (operator === "-") {
-        result = num1 - num2;
-      }
-      if (operator === "/") {
-        result = num1 / num2;
-      }
-      if (operator === "*") {
-        result = num1 * num2;
-      }
+      if (operator === "+") result = num1 + num2;
+      if (operator === "-") result = num1 - num2;
+      if (operator === "*") result = num1 * num2;
+      if (operator === "/") result = num1 / num2;
 
       DOM.currentValue.textContent = result;
+      DOM.previousValue.textContent = "";
+      operator = "";
     }
   });
+});
+
+DOM.clear.addEventListener("click", function () {
+  DOM.currentValue.textContent = "";
+  DOM.previousValue.textContent = "";
+  operator = "";
 });

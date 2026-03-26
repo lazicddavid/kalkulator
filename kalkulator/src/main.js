@@ -30,8 +30,8 @@ DOM.buttons.forEach(function (button) {
       const previousText = DOM.previousValue.textContent;
       const num1 = Number(previousText.split(" ")[0]);
       const num2 = Number(DOM.currentValue.textContent);
-
-      console.log(num1, num2);
     }
+
+    let result = 0;
   });
 });

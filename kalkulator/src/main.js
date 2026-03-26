@@ -33,5 +33,21 @@ DOM.buttons.forEach(function (button) {
     }
 
     let result = 0;
+
+    if (operator === "+") {
+      result = num1 + num2;
+    }
+    if (operator === "-") {
+      result = num1 - num2;
+    } 
+    if (operator === "*") {
+      result = num1 * num2;
+    }
+    if (operator === "/") {
+      result = num1 / num2;
+    }
+  
+  
+  )
   });
 });

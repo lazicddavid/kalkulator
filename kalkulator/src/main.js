@@ -39,15 +39,14 @@ DOM.buttons.forEach(function (button) {
     }
     if (operator === "-") {
       result = num1 - num2;
-    } 
+    }
     if (operator === "*") {
       result = num1 * num2;
     }
     if (operator === "/") {
       result = num1 / num2;
     }
-  
-  
-  )
+
+    DOM.currentValue.textContent = result;
   });
 });

@@ -6,7 +6,7 @@ const DOM = {
   clear: document.querySelector(".clear"),
 };
 
-/*let operator = " ";*/
+let operator = "";
 
 const operators = ["+", "-", "*", "/"];
 const numbersValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
@@ -19,10 +19,19 @@ DOM.buttons.forEach(function (button) {
       DOM.currentValue.textContent += value;
     }
     if (operators.includes(value)) {
+      if (DOM.currentValue.textContent === "") return;
+
       operator = value;
       DOM.previousValue.textContent =
         DOM.currentValue.textContent + " " + value;
       DOM.currentValue.textContent = "";
+    }
+    if (value === "=") {
+      const previousText = DOM.previousValue.textContent;
+      const num1 = Number(previousText.split(" ")[0]);
+      const num2 = Number(DOM.currentValue.textContent);
+
+      console.log(num1, num2);
     }
   });
 });

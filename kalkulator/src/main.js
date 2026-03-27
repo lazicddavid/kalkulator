@@ -69,3 +69,8 @@ DOM.clear.addEventListener("click", function () {
   DOM.previousValue.textContent = "";
   operator = "";
 });
+
+//listeneri na brojeve
+//listeneri na operacije
+//state koji treba osim operacije
+addEventListener;

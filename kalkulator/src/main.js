@@ -74,3 +74,4 @@ DOM.clear.addEventListener("click", function () {
 //listeneri na operacije
 //state koji treba osim operacije
 addEventListener;
+querySelectorAll;

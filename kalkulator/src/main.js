@@ -38,6 +38,7 @@ function calculate(num1, num2)  {
       if (operator === "+") result = num1 + num2;
       if (operator === "*") result = num1 * num2;
       if (operator === "/") result = num1 / num2;
+        return result;
 }
 
 
@@ -50,15 +51,15 @@ function renderOperator(value) {
     state.currentValue = "";
 
   } else {
-    const previosuText = state.previousValue;
-    const num1 = Number(previosuText.split(" ")[0]);
+    const previousText = state.previousValue;
+    const num1 = Number(previousText.split(" ")[0]);
     const num2 = Number(state.currentValue);
 
 
     const result = calculate(num1, num2 );
 
     operator = value;
-    state.previousValue  result + " " + value;
+    state.previousValue = result + " " + value;
     state.currentValue = "";
   }
   render()
@@ -101,7 +102,7 @@ DOM.buttons.forEach(function (button) {
     }
 
     if (value === "=") {
-      handleEqual();
+      renderEqual();
     }
   });
 });

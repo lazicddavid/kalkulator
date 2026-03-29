@@ -6,10 +6,15 @@ const DOM = {
   clear: document.querySelector(".clear"),
 };
 
-let operator = "";
-
 const operators = ["+", "-", "*", "/"];
 const numbersValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
+
+
+const state = {
+  currentValue: "";
+}
+
+
 
 DOM.buttons.forEach(function (button) {
   button.addEventListener("click", function () {
@@ -73,5 +78,4 @@ DOM.clear.addEventListener("click", function () {
 //listeneri na brojeve
 //listeneri na operacije
 //state koji treba osim operacije
-addEventListener;
-querySelectorAll;
+//kako da ubacim projekat na git ?

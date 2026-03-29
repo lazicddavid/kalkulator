@@ -9,12 +9,11 @@ const DOM = {
 const operators = ["+", "-", "*", "/"];
 const numbersValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
 
-
 const state = {
-  currentValue: "";
-}
-
-
+  currentValue: "",
+  previousValue: "",
+  operator: "",
+};
 
 DOM.buttons.forEach(function (button) {
   button.addEventListener("click", function () {

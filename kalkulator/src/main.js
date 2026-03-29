@@ -10,7 +10,7 @@ const operators = ["+", "-", "*", "/"];
 const numbersValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
 
 
- operator: "",
+ let operator: "",
 
 const state = {
   currentValue: "",
@@ -33,17 +33,79 @@ function renderNumber(value) {
 
 
 
-/*
+function calculate(num1, num2)  {
       if (operator === "-") result = num1 - num2;
       if (operator === "+") result = num1 + num2;
       if (operator === "*") result = num1 * num2;
       if (operator === "/") result = num1 / num2;
-*/
-DOM.clear.addEventListener("click", function () {
-  DOM.currentValue.textContent = "";
-  DOM.previousValue.textContent = "";
+}
+
+
+function renderOperator(value) {
+  if (state.currentValue === "") return;
+
+  if (state.previousValue === "") {
+    operator = value;
+    state.previousValue = state.currentValue + "" + value'
+    state.currentValue = "";
+
+  } else {
+    const previosuText = state.previousValue;
+    const num1 = Number(previosuText.split(" ")[0]);
+    const num2 = Number(state.currentValue);
+
+
+    const result = calculate(num1, num2 );
+
+    operator = value;
+    state.previousValue  result + " " + value;
+    state.currentValue = "";
+  }
+  render()
+}
+
+
+
+function renderEqual() {
+  cosnt previosuText = state.previousValue; 
+   const num1 = Number(previousText.split(" ")[0]);
+  const num2 = Number(state.currentValue);
+
+  const result = calculate(num1, num2);
+    state.currentValue = result;
+  state.previousValue = "";
   operator = "";
+
+  render();
+}
+
+function handleClear() {
+  state.currentValue = "";
+  state.previousValue = "";
+  operator = "";
+  render();
+}
+
+
+
+DOM.buttons.forEach(function (button) {
+  button.addEventListener("click", function () {
+    const value = button.textContent;
+
+    if (numbersValues.includes(value)) {
+      handleNumber(value);
+    }
+
+    if (operators.includes(value)) {
+      handleOperator(value);
+    }
+
+    if (value === "=") {
+      handleEqual();
+    }
+  });
 });
+
 
 //listeneri na brojeve
 //listeneri na operacije

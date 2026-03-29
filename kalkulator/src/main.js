@@ -9,71 +9,60 @@ const DOM = {
 const operators = ["+", "-", "*", "/"];
 const numbersValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
 
-
- let operator: "",
+let operator = "";
 
 const state = {
   currentValue: "",
   previousValue: "",
 };
 
-
-
-
-
 function render() {
   DOM.currentValue.textContent = state.currentValue;
-  DOM.previousValue.textContent = state.previousValue
+  DOM.previousValue.textContent = state.previousValue;
 }
 
 function renderNumber(value) {
   state.currentValue += value;
-  render()
+  render();
 }
 
-
-
-function calculate(num1, num2)  {
-      if (operator === "-") result = num1 - num2;
-      if (operator === "+") result = num1 + num2;
-      if (operator === "*") result = num1 * num2;
-      if (operator === "/") result = num1 / num2;
-        return result;
+function calculate(num1, num2) {
+  let result = 0;
+  if (operator === "-") result = num1 - num2;
+  if (operator === "+") result = num1 + num2;
+  if (operator === "*") result = num1 * num2;
+  if (operator === "/") result = num1 / num2;
+  return result;
 }
-
 
 function renderOperator(value) {
   if (state.currentValue === "") return;
 
   if (state.previousValue === "") {
     operator = value;
-    state.previousValue = state.currentValue + "" + value'
+    state.previousValue = state.currentValue + " " + value;
     state.currentValue = "";
-
   } else {
     const previousText = state.previousValue;
     const num1 = Number(previousText.split(" ")[0]);
     const num2 = Number(state.currentValue);
 
-
-    const result = calculate(num1, num2 );
+    const result = calculate(num1, num2);
 
     operator = value;
     state.previousValue = result + " " + value;
     state.currentValue = "";
   }
-  render()
+  render();
 }
 
-
-
 function renderEqual() {
-  cosnt previosuText = state.previousValue; 
-   const num1 = Number(previousText.split(" ")[0]);
+  const previousText = state.previousValue;
+  const num1 = Number(previousText.split(" ")[0]);
   const num2 = Number(state.currentValue);
 
   const result = calculate(num1, num2);
-    state.currentValue = result;
+  state.currentValue = result;
   state.previousValue = "";
   operator = "";
 
@@ -87,18 +76,20 @@ function handleClear() {
   render();
 }
 
-
+DOM.clear.addEventListener("click", function () {
+  handleClear();
+});
 
 DOM.buttons.forEach(function (button) {
   button.addEventListener("click", function () {
     const value = button.textContent;
 
     if (numbersValues.includes(value)) {
-      handleNumber(value);
+      renderNumber(value);
     }
 
     if (operators.includes(value)) {
-    renderOperator(value);
+      renderOperator(value);
     }
 
     if (value === "=") {
@@ -106,7 +97,6 @@ DOM.buttons.forEach(function (button) {
     }
   });
 });
-
 
 //listeneri na brojeve
 //listeneri na operacije

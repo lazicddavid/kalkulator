@@ -1,5 +1,6 @@
 const DOM = {
-  buttons: document.querySelectorAll("button"),
+  numberButtons: document.querySelectorAll(".number"),
+  operatorButtons: document.querySelectorAll(".operator"),
   currentValue: document.querySelector(".current-value"),
   previousValue: document.querySelector(".previous-value"),
   delete: document.querySelector(".delete"),

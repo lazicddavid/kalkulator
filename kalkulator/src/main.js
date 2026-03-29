@@ -98,7 +98,7 @@ DOM.buttons.forEach(function (button) {
     }
 
     if (operators.includes(value)) {
-      handleOperator(value);
+    renderOperator(value);
     }
 
     if (value === "=") {

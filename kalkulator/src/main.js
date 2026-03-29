@@ -9,13 +9,31 @@ const DOM = {
 const operators = ["+", "-", "*", "/"];
 const numbersValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
 
+
+ operator: "",
+
 const state = {
   currentValue: "",
   previousValue: "",
-  operator: "",
 };
 
-DOM.buttons.forEach(function (button) {
+
+
+
+
+function render() {
+  DOM.currentValue.textContent = state.currentValue;
+  DOM.previousValue.textContent = state.previousValue
+}
+
+function renderNumber(value) {
+  state.currentValue += value;
+  render()
+}
+
+
+DOM.buttons.forEach(
+   (button) {
   button.addEventListener("click", function () {
     const value = button.textContent;
 

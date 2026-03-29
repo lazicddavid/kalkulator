@@ -35,4 +35,8 @@ function setOperator(value) {
 }
 
 //prva funkcija, za kliktanje brojeva:
- function render()
+function render() {
+  getCurrentValue().textContent = value;
+  getPreviousValue().textContent = value;
+  getOperator().textContent = value;
+}

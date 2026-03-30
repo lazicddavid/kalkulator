@@ -16,14 +16,10 @@ const state = {
   currentValue: "",
   previousValue: "",
   operator: "",
-  number1: "",
-  number2: "",
 };
+//operator u state je samo trenutno izabrani operator
 
 //ova f-ja postavlja novu vrednost operatora u state
-function setOperator(value) {
-  state.operator = value;
-}
 
 //cita trenutnu vrednost operatora iz state
 function getOperator() {
@@ -34,9 +30,9 @@ function setOperator(value) {
   state.operator = value;
 }
 
-//prva funkcija, za kliktanje brojeva:
+//“Render funkcija ita vrednosti iz state-a preko get funkcija i prikazuje ih u DOM-u.”
 function render() {
-  getCurrentValue().textContent = value;
-  getPreviousValue().textContent = value;
-  getOperator().textContent = value;
+  DOM.currentValue.textContent = getCurrentValue();
+  DOM.previousValue.textContent = getPreviousValue();
 }
+render();

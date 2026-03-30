@@ -17,7 +17,23 @@ const state = {
   previousValue: "",
   operator: "",
 };
-//operator u state je samo trenutno izabrani operator
+
+function getPreviousValue() {
+  return state.previousValue;
+}
+//get samo vraca postojecu vrednost
+function getCurrentValue() {
+  return state.currentValue;
+}
+
+//(value) zato sto set prima novu funkciju koju treba da upise
+function setCurrentValue(value) {
+  state.currentValue = value;
+}
+
+function setPreviousValue(value) {
+  state.previousValue = value;
+}
 
 //ova f-ja postavlja novu vrednost operatora u state
 
@@ -30,9 +46,14 @@ function setOperator(value) {
   state.operator = value;
 }
 
-//“Render funkcija ita vrednosti iz state-a preko get funkcija i prikazuje ih u DOM-u.”
+//“Render funkcija cita vrednosti iz state-a preko get funkcija i prikazuje ih u DOM-u.”
 function render() {
   DOM.currentValue.textContent = getCurrentValue();
   DOM.previousValue.textContent = getPreviousValue();
 }
-render();
+
+setCurrentValue("13");
+setPreviousValue("45 +");
+
+console.log(getCurrentValue());
+console.log(getPreviousValue());

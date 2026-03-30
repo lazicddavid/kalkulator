@@ -52,8 +52,6 @@ function render() {
   DOM.previousValue.textContent = getPreviousValue();
 }
 
-setCurrentValue("13");
-setPreviousValue("45 +");
+function renderNumber(value) {
 
-console.log(getCurrentValue());
-console.log(getPreviousValue());
+render();

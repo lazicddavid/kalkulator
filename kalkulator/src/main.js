@@ -61,5 +61,18 @@ function renderNumber(value) {
 
 function renderOperator(value); {
 const current = getCurrentValue();
+setOperator(value);
+
+setPreviousValue(current + " " +value)
+setCurrentValue("")
+
+
 }
 render()
+
+//prolazim kroz svako dugme, klikom, uzimam vrednost dugmeta ( value) , saljem u funkciju
+DOM.numberButtons.forEach(function (button) {
+  button.addEventListener("click" , function() {
+    renderNumber(button.value)
+  });
+});

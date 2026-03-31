@@ -26,6 +26,11 @@ function getCurrentValue() {
   return state.currentValue;
 }
 
+//cita trenutnu vrednost operatora iz state
+function getOperator() {
+  return state.operator;
+}
+console.log("--------------------------------------------");
 //(value) zato sto set prima novu vrednost
 function setCurrentValue(value) {
   state.currentValue = value;
@@ -35,12 +40,7 @@ function setCurrentValue(value) {
 function setPreviousValue(value) {
   state.previousValue = value;
 }
-
-//cita trenutnu vrednost operatora iz state
-function getOperator() {
-  return state.operator;
-}
-
+//set funkcija postavlja novu vrednost u state
 function setOperator(value) {
   state.operator = value;
 }
@@ -56,5 +56,10 @@ function renderNumber(value) {
   setCurrentValue(current + value);
   render();
 }
-//set funkcija postavlja novu vrednost u state
-render();
+
+
+
+function renderOperator(value); {
+const current = getCurrentValue();
+}
+render()

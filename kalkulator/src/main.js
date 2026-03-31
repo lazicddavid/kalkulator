@@ -30,7 +30,7 @@ function getCurrentValue() {
 function getOperator() {
   return state.operator;
 }
-console.log("--------------------------------------------");
+
 //(value) zato sto set prima novu vrednost
 function setCurrentValue(value) {
   state.currentValue = value;
@@ -57,31 +57,30 @@ function renderNumber(value) {
   render();
 }
 
+function renderOperator(value) {
+  const current = getCurrentValue();
 
+  if (current === "") return;
 
-function renderOperator(value); {
-const current = getCurrentValue();
-setOperator(value);
+  setOperator(value);
 
-setPreviousValue(current + " " +value)
-setCurrentValue("")
+  setPreviousValue(current + " " + value);
+  setCurrentValue("");
 
-
+  render();
 }
-render()
 
 //prolazim kroz svako dugme, klikom, uzimam vrednost dugmeta ( value) , saljem funkciji
 DOM.numberButtons.forEach(function (button) {
-  button.addEventListener("click" , function() {
+  button.addEventListener("click", function () {
     renderNumber(button.value);
   });
 });
 
-DOM.operatorButtons.forEach(function (buttons) {
-  button.addEventListener("click" function(){
+DOM.operatorButtons.forEach(function (button) {
+  button.addEventListener("click", function () {
     renderOperator(button.value);
   });
-}); 
+});
 
-
-DOM.
+function calculate() {}

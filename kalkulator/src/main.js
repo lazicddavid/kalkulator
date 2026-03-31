@@ -26,16 +26,15 @@ function getCurrentValue() {
   return state.currentValue;
 }
 
-//(value) zato sto set prima novu funkciju koju treba da upise
+//(value) zato sto set prima novu vrednost
 function setCurrentValue(value) {
   state.currentValue = value;
 }
 
+//postavlja novu vrednost previousValue u state
 function setPreviousValue(value) {
   state.previousValue = value;
 }
-
-//ova f-ja postavlja novu vrednost operatora u state
 
 //cita trenutnu vrednost operatora iz state
 function getOperator() {

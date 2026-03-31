@@ -53,5 +53,9 @@ function render() {
 }
 
 function renderNumber(value) {
-
+  const current = getCurrentValue();
+  setCurrentValue(current + value);
+  render();
+}
+//set funkcija postavlja novu vrednost u state
 render();

@@ -70,20 +70,18 @@ setCurrentValue("")
 }
 render()
 
-//prolazim kroz svako dugme, klikom, uzimam vrednost dugmeta ( value) , saljem u funkciju
+//prolazim kroz svako dugme, klikom, uzimam vrednost dugmeta ( value) , saljem funkciji
 DOM.numberButtons.forEach(function (button) {
   button.addEventListener("click" , function() {
     renderNumber(button.value);
   });
 });
 
-
-
-
-
-
 DOM.operatorButtons.forEach(function (buttons) {
   button.addEventListener("click" function(){
     renderOperator(button.value);
-  })
-})
+  });
+}); 
+
+
+DOM.

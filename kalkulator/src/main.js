@@ -20,6 +20,14 @@ const state = {
   secondNumber: "",
 };
 
+function getFirstNumber() {
+  return state.firstNumber;
+}
+
+function getSecondNumber() {
+  return state.secondNumber;
+}
+
 function getPreviousValue() {
   return state.previousValue;
 }
@@ -90,7 +98,12 @@ function calculate(firstNumber, secondNumber) {
   let result = 0;
   if (operator === "+") result = firstNumber + secondNumber;
   if (operator === "-") result = firstNumber - secondNumber;
-  if (operator === "*") result = firstNumber * secondNumber;
   if (operator === "/") result = firstNumber / secondNumber;
+  if (operator === "*") result = firstNumber * secondNumber;
+
   return result;
+}
+
+function renderEqual() {
+  fi;
 }

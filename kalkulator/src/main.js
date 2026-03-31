@@ -16,6 +16,8 @@ const state = {
   currentValue: "",
   previousValue: "",
   operator: "",
+  firstNumber: "",
+  secondNumber: "",
 };
 
 function getPreviousValue() {
@@ -83,4 +85,12 @@ DOM.operatorButtons.forEach(function (button) {
   });
 });
 
-function calculate() {}
+function calculate(firstNumber, secondNumber) {
+  const operator = getOperator();
+  let result = 0;
+  if (operator === "+") result = firstNumber + secondNumber;
+  if (operator === "-") result = firstNumber - secondNumber;
+  if (operator === "*") result = firstNumber * secondNumber;
+  if (operator === "/") result = firstNumber / secondNumber;
+  return result;
+}

@@ -10,6 +10,7 @@ const DOM = {
   previousValue: document.querySelector(".previous-value"),
   delete: document.querySelector(".delete"),
   clear: document.querySelector(".clear"),
+  equal: document.querySelector(".equal"),
 };
 
 const state = {
@@ -39,6 +40,10 @@ function getCurrentValue() {
 //cita trenutnu vrednost operatora iz state
 function getOperator() {
   return state.operator;
+}
+
+function setFirstNumber(value) {
+  state.firstNumber = value;
 }
 
 //(value) zato sto set prima novu vrednost
@@ -71,7 +76,7 @@ function renderOperator(value) {
   const current = getCurrentValue();
 
   if (current === "") return;
-
+  setFirstNumber(current);
   setOperator(value);
 
   setPreviousValue(current + " " + value);
@@ -113,4 +118,11 @@ function renderEqual() {
   const firstNumber = Number(getFirstNumber());
   const secondNumber = Number(getCurrentValue());
   const result = calculate(firstNumber, secondNumber, operator);
+
+  setCurrentValue(result);
+  setPreviousValue("");
+  setFirstNumber("");
+  setOperator("");
+
+  render();
 }

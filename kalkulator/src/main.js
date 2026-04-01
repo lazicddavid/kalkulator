@@ -105,5 +105,11 @@ function calculate(firstNumber, secondNumber) {
 }
 
 function renderEqual() {
-  fi;
+  const operator = getOperator();
+  if (getCurrentValue() === "") return;
+  if (getFirstNumber() === "") return;
+  if (operator === "");
+
+  const firstNumber = Number(getFirstNumber());
+  const secondNumber = Number(getCurrentNumber());
 }

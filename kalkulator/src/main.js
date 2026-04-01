@@ -1,8 +1,3 @@
-//listeneri na brojeve
-//listeneri na operacije
-//state koji treba osim operacije
-//git
-
 const DOM = {
   numberButtons: document.querySelectorAll(".number"),
   operatorButtons: document.querySelectorAll(".operator"),
@@ -11,6 +6,7 @@ const DOM = {
   delete: document.querySelector(".delete"),
   clear: document.querySelector(".clear"),
   equal: document.querySelector(".equal"),
+  clear: document.querySelector(".clear"),
 };
 
 const state = {
@@ -21,6 +17,7 @@ const state = {
   secondNumber: "",
 };
 
+//get f-ja cita vrednost iz stejta
 function getFirstNumber() {
   return state.firstNumber;
 }
@@ -37,7 +34,6 @@ function getCurrentValue() {
   return state.currentValue;
 }
 
-//cita trenutnu vrednost operatora iz state
 function getOperator() {
   return state.operator;
 }
@@ -51,7 +47,7 @@ function setCurrentValue(value) {
   state.currentValue = value;
 }
 
-//postavlja novu vrednost previousValue u state
+//postavlja novu vrednost u state
 function setPreviousValue(value) {
   state.previousValue = value;
 }
@@ -60,12 +56,12 @@ function setOperator(value) {
   state.operator = value;
 }
 
-//“Render funkcija cita vrednosti iz state-a preko get funkcija i prikazuje ih u DOM-u.”
+//Render funkcija uzima vrednosti iz state-a preko get funkcija i prikazuje ih u DOM-u.”
 function render() {
   DOM.currentValue.textContent = getCurrentValue();
   DOM.previousValue.textContent = getPreviousValue();
 }
-
+//uzimam vrednost dva broja , prvog unetog i drugog, 2 i 3 -23
 function renderNumber(value) {
   const current = getCurrentValue();
   setCurrentValue(current + value);
@@ -76,27 +72,25 @@ function renderOperator(value) {
   const current = getCurrentValue();
 
   if (current === "") return;
-  setFirstNumber(current);
-  setOperator(value);
 
-  setPreviousValue(current + " " + value);
-  setCurrentValue("");
+  if (getFirstNumber() !== "" && getOperator() !== "") {
+    const firstNumber = Number(getFirstNumber()); //prvi broj iz stat.pretv.u br
+    const secondNumber = Number(getCurrentValue());
+    const result = calculate(firstNumber, secondNumber);
+
+    setFirstNumber(result);
+    setOperator(value);
+    setPreviousValue(result) + " " + value;
+    setCurrentValue("");
+  } else {
+    setFirstNumber(current);
+    setOperator(value);
+    setPreviousValue(current + " " + value);
+    setCurrentValue("");
+  }
 
   render();
 }
-
-//prolazim kroz svako dugme, klikom, uzimam vrednost dugmeta ( value) , saljem funkciji
-DOM.numberButtons.forEach(function (button) {
-  button.addEventListener("click", function () {
-    renderNumber(button.value);
-  });
-});
-
-DOM.operatorButtons.forEach(function (button) {
-  button.addEventListener("click", function () {
-    renderOperator(button.value);
-  });
-});
 
 function calculate(firstNumber, secondNumber) {
   const operator = getOperator();
@@ -126,3 +120,32 @@ function renderEqual() {
 
   render();
 }
+
+//prolazim kroz svako dugme, klikom, uzimam vrednost dugmeta ( value) , saljem funkciji
+DOM.numberButtons.forEach(function (button) {
+  button.addEventListener("click", function () {
+    renderNumber(button.value);
+  });
+});
+
+DOM.operatorButtons.forEach(function (button) {
+  button.addEventListener("click", function () {
+    renderOperator(button.value);
+  });
+});
+
+DOM.equal.addEventListener("click", function () {
+  renderEqual();
+});
+
+function clear() {
+  setCurrentValue("");
+  setPreviousValue("");
+  setFirstNumber("");
+  setOperator("");
+  render();
+}
+
+DOM.clear.addEventListener("click", function () {
+  clear();
+});

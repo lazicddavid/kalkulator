@@ -108,8 +108,9 @@ function renderEqual() {
   const operator = getOperator();
   if (getCurrentValue() === "") return;
   if (getFirstNumber() === "") return;
-  if (operator === "");
+  if (operator === "") return;
 
   const firstNumber = Number(getFirstNumber());
-  const secondNumber = Number(getCurrentNumber());
+  const secondNumber = Number(getCurrentValue());
+  const result = calculate(firstNumber, secondNumber, operator);
 }

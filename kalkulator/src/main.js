@@ -15,9 +15,11 @@ const state = {
   operator: "",
   firstNumber: "",
   secondNumber: "",
+  getFirstNumber() {
+    return this.firstNumber;
+  },
 };
 
-//get f-ja cita vrednost iz stejta
 function getFirstNumber() {
   return state.firstNumber;
 }
@@ -29,7 +31,7 @@ function getSecondNumber() {
 function getPreviousValue() {
   return state.previousValue;
 }
-//get samo vraca postojecu vrednost
+
 function getCurrentValue() {
   return state.currentValue;
 }
@@ -42,26 +44,23 @@ function setFirstNumber(value) {
   state.firstNumber = value;
 }
 
-//(value) zato sto set prima novu vrednost
 function setCurrentValue(value) {
   state.currentValue = value;
 }
 
-//postavlja novu vrednost u state
 function setPreviousValue(value) {
   state.previousValue = value;
 }
-//set funkcija postavlja novu vrednost u state
+//nova vrednost u st.
 function setOperator(value) {
   state.operator = value;
 }
 
-//Render funkcija uzima vrednosti iz state-a preko get funkcija i prikazuje ih u DOM-u.”
 function render() {
   DOM.currentValue.textContent = getCurrentValue();
   DOM.previousValue.textContent = getPreviousValue();
 }
-//uzimam vrednost dva broja , prvog unetog i drugog, 2 i 3 -23
+
 function renderNumber(value) {
   const current = getCurrentValue();
   setCurrentValue(current + value);
@@ -83,7 +82,7 @@ function renderOperator(value) {
     setPreviousValue(result) + " " + value;
     setCurrentValue("");
   } else {
-    setFirstNumber(current);
+    setFirstNumber(current); //cuvam br koji sam uneo
     setOperator(value);
     setPreviousValue(current + " " + value);
     setCurrentValue("");
@@ -94,8 +93,10 @@ function renderOperator(value) {
 
 function calculate(firstNumber, secondNumber) {
   const operator = getOperator();
+
   let result = 0;
-  if (operator === "+") result = firstNumber + secondNumber;
+
+  if (operator === "+") result = add(firstNumber, secondNumber);
   if (operator === "-") result = firstNumber - secondNumber;
   if (operator === "/") result = firstNumber / secondNumber;
   if (operator === "*") result = firstNumber * secondNumber;
@@ -113,7 +114,7 @@ function renderEqual() {
   const secondNumber = Number(getCurrentValue());
   const result = calculate(firstNumber, secondNumber, operator);
 
-  setCurrentValue(result);
+  setCurrentValue(result); //rez je novi trenutni br.
   setPreviousValue("");
   setFirstNumber("");
   setOperator("");
@@ -121,7 +122,6 @@ function renderEqual() {
   render();
 }
 
-//prolazim kroz svako dugme, klikom, uzimam vrednost dugmeta ( value) , saljem funkciji
 DOM.numberButtons.forEach(function (button) {
   button.addEventListener("click", function () {
     renderNumber(button.value);

@@ -44,7 +44,7 @@ function renderOperator(value) {
   if (current === "") return;
 
   if (getFirstNumber() !== "" && getOperator() !== "") {
-    const firstNumber = Number(getFirstNumber()); //prvi broj iz stat.pretv.u br
+    const firstNumber = Number(this.firstNumber()); //prvi broj iz stat.pretv.u br
     const secondNumber = Number(this.currentValue());
     const result = calculate(firstNumber, secondNumber);
 

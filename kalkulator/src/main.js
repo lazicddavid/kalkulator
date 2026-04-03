@@ -20,6 +20,8 @@ const state = {
   },
 };
 
+getCurrentValue;
+
 function getFirstNumber() {
   return state.firstNumber;
 }

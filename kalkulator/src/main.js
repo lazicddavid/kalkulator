@@ -83,7 +83,7 @@ function renderEqual() {
 
   const firstNumber = Number(this.firstNumber());
   const secondNumber = Number(this.currentValue());
-  const result = calculate(firstNumber, secondNumber, operator);
+  const result = calculate(firstNumber, currentValue, operator);
 
   setCurrentValue(result); //rez je novi trenutni br.
   setPreviousValue("");

@@ -45,7 +45,7 @@ function renderOperator(value) {
 
   if (getFirstNumber() !== "" && getOperator() !== "") {
     const firstNumber = Number(getFirstNumber()); //prvi broj iz stat.pretv.u br
-    const secondNumber = Number(getCurrentValue());
+    const secondNumber = Number(this.currentValue());
     const result = calculate(firstNumber, secondNumber);
 
     setFirstNumber(result);
@@ -68,9 +68,9 @@ function calculate(firstNumber, secondNumber) {
   let result = 0;
 
   if (operator === "+") result = add(firstNumber, secondNumber);
-  if (operator === "-") result = firstNumber - secondNumber;
-  if (operator === "/") result = firstNumber / secondNumber;
-  if (operator === "*") result = firstNumber * secondNumber;
+  if (operator === "-") result = minus(firstNumber - secondNumber);
+  if (operator === "/") result = divide(firstNumber / secondNumber);
+  if (operator === "*") result = multiply(firstNumber * secondNumber);
 
   return result;
 }

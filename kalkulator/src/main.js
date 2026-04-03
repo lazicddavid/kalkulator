@@ -25,6 +25,18 @@ const state = {
   getOperator() {
     return this.operator;
   },
+
+  setCurrentValue(value) {
+    this.currentValue = value;
+  },
+
+  setPreviousValue(value) {
+    this.previousValue = value;
+  },
+
+  setOperator(value) {
+    this.operator = value;
+  },
 };
 
 function render() {
@@ -33,13 +45,13 @@ function render() {
 }
 
 function renderNumber(value) {
-  const current = this.currentValue();
+  const current = state.getCurrentValue();
   setCurrentValue(current + value);
   render();
 }
 
 function renderOperator(value) {
-  const current = this.currentValue();
+  const current = state.getCurrentValue();
 
   if (current === "") return;
 

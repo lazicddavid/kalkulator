@@ -28,8 +28,8 @@ const state = {
 };
 
 function render() {
-  DOM.currentValue.textContent = this.currentValue();
-  DOM.previousValue.textContent = getPreviousValue();
+  DOM.currentValue.textContent = state.getCurrentValue();
+  DOM.previousValue.textContent = state.getPreviousValue();
 }
 
 function renderNumber(value) {
@@ -44,7 +44,7 @@ function renderOperator(value) {
   if (current === "") return;
 
   if (this.firstNumber() !== "" && this.operator() !== "") {
-    const firstNumber = Number(this.firstNumber()); //prvi broj iz stat.pretv.u br
+    const firstNumber = Number(this.currentValue()); //prvi broj iz stat.pretv.u br
     const secondNumber = Number(this.currentValue());
     const result = calculate(firstNumber, secondNumber);
 

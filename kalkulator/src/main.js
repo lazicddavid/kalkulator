@@ -77,8 +77,8 @@ function calculate(firstNumber, secondNumber) {
 
 function renderEqual() {
   const operator = getOperator();
-  if (getCurrentValue() === "") return;
-  if (getFirstNumber() === "") return;
+  if (this.currentValue() === "") return;
+  if (this.firstNumber() === "") return;
   if (operator === "") return;
 
   const firstNumber = Number(this.firstNumber());

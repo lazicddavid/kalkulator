@@ -28,12 +28,12 @@ const state = {
 };
 
 function render() {
-  DOM.currentValue.textContent = getCurrentValue();
+  DOM.currentValue.textContent = this.currentValue();
   DOM.previousValue.textContent = getPreviousValue();
 }
 
 function renderNumber(value) {
-  const current = getCurrentValue();
+  const current = this.currentValue();
   setCurrentValue(current + value);
   render();
 }

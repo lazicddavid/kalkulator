@@ -13,50 +13,19 @@ const state = {
   currentValue: "",
   previousValue: "",
   operator: "",
-  firstNumber: "",
-  secondNumber: "",
-  getFirstNumber() {
-    return this.firstNumber;
+
+  getCurrentValue() {
+    return this.currentValue;
+  },
+
+  getPreviousValue() {
+    return this.previousValue;
+  },
+
+  getOperator() {
+    return this.operator;
   },
 };
-
-getCurrentValue;
-
-function getFirstNumber() {
-  return state.firstNumber;
-}
-
-function getSecondNumber() {
-  return state.secondNumber;
-}
-
-function getPreviousValue() {
-  return state.previousValue;
-}
-
-function getCurrentValue() {
-  return state.currentValue;
-}
-
-function getOperator() {
-  return state.operator;
-}
-
-function setFirstNumber(value) {
-  state.firstNumber = value;
-}
-
-function setCurrentValue(value) {
-  state.currentValue = value;
-}
-
-function setPreviousValue(value) {
-  state.previousValue = value;
-}
-//nova vrednost u st.
-function setOperator(value) {
-  state.operator = value;
-}
 
 function render() {
   DOM.currentValue.textContent = getCurrentValue();
@@ -112,8 +81,8 @@ function renderEqual() {
   if (getFirstNumber() === "") return;
   if (operator === "") return;
 
-  const firstNumber = Number(getFirstNumber());
-  const secondNumber = Number(getCurrentValue());
+  const firstNumber = Number(this.firstNumber());
+  const secondNumber = Number(this.currentValue());
   const result = calculate(firstNumber, secondNumber, operator);
 
   setCurrentValue(result); //rez je novi trenutni br.

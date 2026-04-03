@@ -39,7 +39,7 @@ function renderNumber(value) {
 }
 
 function renderOperator(value) {
-  const current = getCurrentValue();
+  const current = this.currentValue();
 
   if (current === "") return;
 

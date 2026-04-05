@@ -47,7 +47,9 @@ const state = {
 };
 
 function handleDecimal {
-const current = state.getCurrentValue()l
+const current = state.getCurrentValue();
+
+if(current.includes(".")) return;
 
 }
 

@@ -60,6 +60,13 @@ function handleDecimal() {
   render();
 }
 
+function handleDelete() {
+  const current = state.getCurrentValue();
+
+  state.setCurrentValue(current.slice(0, -1));
+  render();
+}
+
 function render() {
   DOM.currentValue.textContent = state.getCurrentValue();
   DOM.previousValue.textContent = state.getPreviousValue();

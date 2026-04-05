@@ -6,14 +6,18 @@ const DOM = {
   delete: document.querySelector(".delete"),
   clear: document.querySelector(".clear"),
   equal: document.querySelector(".equal"),
-  clear: document.querySelector(".clear"),
 };
+//koristi lepse nazive, konkretnije, umesto render, pisi handler! upisi u svesku
 
 const state = {
   currentValue: "",
   previousValue: "",
   operator: "",
+  firstNumber: "",
 
+  getFirstNumber() {
+    return this.firstNumber;
+  },
   getCurrentValue() {
     return this.currentValue;
   },
@@ -37,7 +41,15 @@ const state = {
   setOperator(value) {
     this.operator = value;
   },
+  setFirstNumber(value) {
+    this.firstNumber = value;
+  },
 };
+
+function handleDecimal {}
+
+
+
 
 function render() {
   DOM.currentValue.textContent = state.getCurrentValue();
@@ -46,61 +58,60 @@ function render() {
 
 function renderNumber(value) {
   const current = state.getCurrentValue();
-  setCurrentValue(current + value);
+  state.setCurrentValue(current + value);
   render();
 }
-
 function renderOperator(value) {
   const current = state.getCurrentValue();
 
   if (current === "") return;
 
-  if (this.firstNumber() !== "" && this.operator() !== "") {
-    const firstNumber = Number(this.currentValue()); //prvi broj iz stat.pretv.u br
-    const secondNumber = Number(this.currentValue());
+  if (state.getFirstNumber() !== "" && state.getOperator() !== "") {
+    const firstNumber = Number(state.getFirstNumber());
+    const secondNumber = Number(current);
     const result = calculate(firstNumber, secondNumber);
 
-    setFirstNumber(result);
-    setOperator(value);
-    setPreviousValue(result) + " " + value;
-    setCurrentValue("");
+    state.setFirstNumber(String(result));
+    state.setOperator(value);
+    state.setPreviousValue(result + " " + value);
+    state.setCurrentValue("");
   } else {
-    setFirstNumber(current); //cuvam br koji sam uneo
-    setOperator(value);
-    setPreviousValue(current + " " + value);
-    setCurrentValue("");
+    state.setFirstNumber(current);
+    state.setOperator(value);
+    state.setPreviousValue(current + " " + value);
+    state.setCurrentValue("");
   }
 
   render();
 }
 
-function calculate(firstNumber, secondNumber) {
-  const operator = getOperator();
+function calculate(firstNumber, currentValue) {
+  const operator = state.getOperator();
 
   let result = 0;
-
-  if (operator === "+") result = add(firstNumber, secondNumber);
-  if (operator === "-") result = minus(firstNumber - secondNumber);
-  if (operator === "/") result = divide(firstNumber / secondNumber);
-  if (operator === "*") result = multiply(firstNumber * secondNumber);
-
+  if (operator === "+") return firstNumber + currentValue;
+  if (operator === "-") return firstNumber - currentValue;
+  if (operator === "/") return firstNumber / currentValue;
+  if (operator === "*") return firstNumber * currentValue;
   return result;
 }
 
 function renderEqual() {
-  const operator = getOperator();
-  if (this.currentValue() === "") return;
-  if (this.firstNumber() === "") return;
+  const operator = state.getOperator();
+  const current = state.getCurrentValue();
+
+  if (current === "") return;
+  if (state.getFirstNumber() === "") return;
   if (operator === "") return;
 
-  const firstNumber = Number(this.firstNumber());
-  const secondNumber = Number(this.currentValue());
-  const result = calculate(firstNumber, currentValue, operator);
+  const firstNumber = Number(state.getFirstNumber());
+  const secondNumber = Number(current);
+  const result = calculate(firstNumber, secondNumber);
 
-  setCurrentValue(result); //rez je novi trenutni br.
-  setPreviousValue("");
-  setFirstNumber("");
-  setOperator("");
+  state.setCurrentValue(String(result));
+  state.setPreviousValue("");
+  state.setFirstNumber("");
+  state.setOperator("");
 
   render();
 }
@@ -122,10 +133,10 @@ DOM.equal.addEventListener("click", function () {
 });
 
 function clear() {
-  setCurrentValue("");
-  setPreviousValue("");
-  setFirstNumber("");
-  setOperator("");
+  state.setCurrentValue("");
+  state.setPreviousValue("");
+  state.setOperator("");
+  state.setFirstNumber("");
   render();
 }
 

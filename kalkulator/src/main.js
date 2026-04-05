@@ -6,6 +6,7 @@ const DOM = {
   delete: document.querySelector(".delete"),
   clear: document.querySelector(".clear"),
   equal: document.querySelector(".equal"),
+  delete: document.querySelector(".delete"),
 };
 //koristi lepse nazive, konkretnije, umesto render, pisi handler! upisi u svesku
 
@@ -159,3 +160,5 @@ function clear() {
 DOM.clear.addEventListener("click", function () {
   clear();
 });
+
+DOM.

@@ -46,7 +46,10 @@ const state = {
   },
 };
 
-function handleDecimal {}
+function handleDecimal {
+const current = state.getCurrentValue()l
+
+}
 
 
 

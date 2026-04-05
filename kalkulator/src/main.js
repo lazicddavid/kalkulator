@@ -161,4 +161,6 @@ DOM.clear.addEventListener("click", function () {
   clear();
 });
 
-DOM.
+DOM.delete.addEventListener("click", function () {
+  handleDelete();
+});

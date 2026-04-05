@@ -46,15 +46,19 @@ const state = {
   },
 };
 
-function handleDecimal {
-const current = state.getCurrentValue();
+function handleDecimal() {
+  const current = state.getCurrentValue();
 
-if(current.includes(".")) return;
+  if (current.includes(".")) return;
 
+  if (current === "") {
+    state.setCurrentValue("0.");
+  } else {
+    state.setCurrentValue(current + ".");
+  }
+
+  render();
 }
-
-
-
 
 function render() {
   DOM.currentValue.textContent = state.getCurrentValue();

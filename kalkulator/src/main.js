@@ -101,7 +101,10 @@ function renderOperator(value) {
 
   render();
 }
-
+//pomocne funkcije,
+//deljenje sa nulom
+//dupliranje tacke
+//kvadrat
 function calculate(firstNumber, currentValue) {
   const operator = state.getOperator();
 

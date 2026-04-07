@@ -6,8 +6,8 @@ const DOM = {
   delete: document.querySelector(".delete"),
   clear: document.querySelector(".clear"),
   equal: document.querySelector(".equal"),
-  delete: document.querySelector(".delete"),
-  square: document.querySelector(".swquare"),
+
+  square: document.querySelector(".square"),
 };
 //koristi lepse nazive, konkretnije, umesto render, pisi handler! upisi u svesku
 
@@ -48,6 +48,11 @@ const state = {
   },
 };
 
+function render() {
+  DOM.currentValue.textContent = state.getCurrentValue();
+  DOM.previousValue.textContent = state.getPreviousValue();
+}
+
 function handleDecimal() {
   const current = state.getCurrentValue();
 
@@ -67,11 +72,6 @@ function handleDelete() {
 
   state.setCurrentValue(current.slice(0, -1));
   render();
-}
-
-function render() {
-  DOM.currentValue.textContent = state.getCurrentValue();
-  DOM.previousValue.textContent = state.getPreviousValue();
 }
 
 function renderNumber(value) {
@@ -107,26 +107,33 @@ function renderOperator(value) {
 //dupliranje tacke
 //kvadrat
 
-function handleSquare() {
-  if (getCurrentValue() === "") return;
-
-  const num = Number(getCurrentValue());
-  const result = num * num;
-
-  setCurrentValue(result.toString());
-  render();
-}
-
 function calculate(firstNumber, currentValue) {
   const operator = state.getOperator();
 
-  let result = 0;
+  if (operator === "/" && currentValue === 0) return;
   if (operator === "+") return firstNumber + currentValue;
   if (operator === "-") return firstNumber - currentValue;
-  if (operator === "/") return firstNumber / currentValue;
   if (operator === "*") return firstNumber * currentValue;
-  return result;
+  if (operator === "/") return firstNumber / currentValue;
 }
+
+function handleSquare() {
+  const value = getCurrentValue();
+  if (value === "") return;
+
+  setCurrentValue((value * value).toString());
+  render();
+}
+
+DOM.numberButtons.forEach(function (button) {
+  button.addEventListener("click", function () {
+    if (button.value === ".") {
+      handleDecimal();
+    } else {
+      renderNumber(button.value);
+    }
+  });
+});
 
 function renderEqual() {
   const operator = state.getOperator();
@@ -147,12 +154,6 @@ function renderEqual() {
 
   render();
 }
-
-DOM.numberButtons.forEach(function (button) {
-  button.addEventListener("click", function () {
-    renderNumber(button.value);
-  });
-});
 
 DOM.operatorButtons.forEach(function (button) {
   button.addEventListener("click", function () {
@@ -180,4 +181,6 @@ DOM.delete.addEventListener("click", function () {
   handleDelete();
 });
 
-DOM.square.addEventListener("click", handleSquare);
+DOM.square.addEventListener("click", function () {
+  handleSquare();
+});

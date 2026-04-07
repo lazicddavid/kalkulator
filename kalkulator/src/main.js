@@ -7,6 +7,7 @@ const DOM = {
   clear: document.querySelector(".clear"),
   equal: document.querySelector(".equal"),
   delete: document.querySelector(".delete"),
+  DOM.square.addEventListener("click", handleSquare);
 };
 //koristi lepse nazive, konkretnije, umesto render, pisi handler! upisi u svesku
 

@@ -113,7 +113,8 @@ function handleSquare() {
   const num = Number(getCurrentValue());
   const result = num * num;
 
-  setCurrentValue(result());
+  setCurrentValue(result.toString());
+  render();
 }
 
 function calculate(firstNumber, currentValue) {

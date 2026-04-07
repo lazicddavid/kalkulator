@@ -7,7 +7,7 @@ const DOM = {
   clear: document.querySelector(".clear"),
   equal: document.querySelector(".equal"),
   delete: document.querySelector(".delete"),
-  DOM.square.addEventListener("click", handleSquare);
+  square: document.querySelector(".swquare"),
 };
 //koristi lepse nazive, konkretnije, umesto render, pisi handler! upisi u svesku
 
@@ -107,20 +107,14 @@ function renderOperator(value) {
 //dupliranje tacke
 //kvadrat
 
+function handleSquare() {
+  if (getCurrentValue() === "") return;
 
+  const num = Number(getCurrentValue());
+  const result = num * num;
 
-
-
-  function handleSquare () {
-    if (getCurrentValue() === "") return;
-  }
-
-
-
-
-
-
-
+  setCurrentValue(result());
+}
 
 function calculate(firstNumber, currentValue) {
   const operator = state.getOperator();
@@ -184,3 +178,5 @@ DOM.clear.addEventListener("click", function () {
 DOM.delete.addEventListener("click", function () {
   handleDelete();
 });
+
+DOM.square.addEventListener("click", handleSquare);

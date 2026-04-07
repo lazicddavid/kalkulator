@@ -106,6 +106,22 @@ function renderOperator(value) {
 //deljenje sa nulom
 //dupliranje tacke
 //kvadrat
+
+
+
+
+
+  function handleSquare () {
+    if (getCurrentValue() === "") return;
+  }
+
+
+
+
+
+
+
+
 function calculate(firstNumber, currentValue) {
   const operator = state.getOperator();
 

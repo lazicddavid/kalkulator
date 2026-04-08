@@ -6,10 +6,8 @@ const DOM = {
   delete: document.querySelector(".delete"),
   clear: document.querySelector(".clear"),
   equal: document.querySelector(".equal"),
-
   square: document.querySelector(".square"),
 };
-//koristi lepse nazive, konkretnije, umesto render, pisi handler! upisi u svesku
 
 const state = {
   currentValue: "",
@@ -53,20 +51,6 @@ function render() {
   DOM.previousValue.textContent = state.getPreviousValue();
 }
 
-function handleDecimal() {
-  const current = state.getCurrentValue();
-
-  if (current.includes(".")) return;
-
-  if (current === "") {
-    state.setCurrentValue("0.");
-  } else {
-    state.setCurrentValue(current + ".");
-  }
-
-  render();
-}
-
 function handleDelete() {
   const current = state.getCurrentValue();
 
@@ -102,38 +86,48 @@ function renderOperator(value) {
 
   render();
 }
-//pomocne funkcije,
+//pomocne funkcije:
+
 //deljenje sa nulom
 //dupliranje tacke
-//kvadrat
+//kvadrat x2
+//prefiks handle
+function handleDecimal() {
+  const current = state.getCurrentValue();
 
-function calculate(firstNumber, currentValue) {
-  const operator = state.getOperator();
+  if (current.includes(".")) return;
 
-  if (operator === "/" && currentValue === 0) return;
-  if (operator === "+") return firstNumber + currentValue;
-  if (operator === "-") return firstNumber - currentValue;
-  if (operator === "*") return firstNumber * currentValue;
-  if (operator === "/") return firstNumber / currentValue;
-}
+  if (current === "") {
+    state.setCurrentValue("0.");
+  } else {
+    state.setCurrentValue(current + ".");
+  }
 
-function handleSquare() {
-  const value = getCurrentValue();
-  if (value === "") return;
-
-  setCurrentValue((value * value).toString());
   render();
 }
 
-DOM.numberButtons.forEach(function (button) {
-  button.addEventListener("click", function () {
-    if (button.value === ".") {
-      handleDecimal();
-    } else {
-      renderNumber(button.value);
-    }
-  });
-});
+function calculate(firstNumber, currentValue) {
+  const operator = state.getOperator();
+  let result = 0;
+  if (operator === "/" && currentValue === 0) {
+    alert("can not divide wiht 0");
+    return;
+  }
+
+  if (operator === "+") return add(firstNumber, currentValue);
+  if (operator === "-") return minus(firstNumber, currentValue);
+  if (operator === "*") return multiply(firstNumber, currentValue);
+  if (operator === "/") return divide(firstNumber, currentValue);
+
+  return result();
+}
+function handleSquare() {
+  const value = state.getCurrentValue();
+  if (value === "") return;
+
+  state.setCurrentValue(value * value);
+  render();
+}
 
 function renderEqual() {
   const operator = state.getOperator();
@@ -165,7 +159,7 @@ DOM.equal.addEventListener("click", function () {
   renderEqual();
 });
 
-function clear() {
+function handleClear() {
   state.setCurrentValue("");
   state.setPreviousValue("");
   state.setOperator("");
@@ -174,7 +168,7 @@ function clear() {
 }
 
 DOM.clear.addEventListener("click", function () {
-  clear();
+  handleClear();
 });
 
 DOM.delete.addEventListener("click", function () {
@@ -183,4 +177,14 @@ DOM.delete.addEventListener("click", function () {
 
 DOM.square.addEventListener("click", function () {
   handleSquare();
+});
+
+DOM.numberButtons.forEach(function (button) {
+  button.addEventListener("click", function () {
+    if (button.value === ".") {
+      handleDecimal();
+    } else {
+      renderNumber(button.value);
+    }
+  });
 });

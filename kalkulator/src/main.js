@@ -128,7 +128,7 @@ function handleSquare() {
   state.setCurrentValue(value * value);
   render();
 }
-
+render;
 function renderEqual() {
   const operator = state.getOperator();
   const current = state.getCurrentValue();

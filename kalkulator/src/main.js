@@ -131,7 +131,7 @@ function handleSquare() {
 
 
 function numberReset()
-
+function number
 function renderEqual() {
   const operator = state.getOperator();
   const current = state.getCurrentValue();
